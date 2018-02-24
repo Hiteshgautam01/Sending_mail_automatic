@@ -1,0 +1,46 @@
+import time
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+
+driver= webdriver.Chrome()
+#driver= webdriver.Chrome("E:\QA\Resource\WEBDRIVER\chromedriverserver\chromedriver.exe")
+driver.get("https://accounts.zoho.com/signin?servicename=VirtualOffice&signupurl=https://workplace.zoho.com/orgsignup.do?signup.html")
+
+
+emailid=driver.find_element_by_id("lid")
+emailid.send_keys("username")
+
+passw=driver.find_element_by_id("pwd")
+passw.send_keys("passw")
+		
+signin=driver.find_element_by_id("signin_submit")
+signin.click()
+
+time.sleep(20)
+
+driver.get("https://mail.zoho.com/zm/#compose")
+driver.get("https://mail.zoho.com/zm/#compose")
+
+time.sleep(20)
+
+sender_email=driver.find_element_by_id("zmtotxt_Cmp1")
+sender_email.send_keys("gautam14.hitesh@gmail.com")
+sender_email.send_keys(Keys.TAB)
+
+subject=driver.find_element_by_id("zmsub_Cmp1")
+subject.send_keys("Best gifts for you!")
+subject.send_keys(Keys.TAB)
+
+email_content = driver.find_element_by_id("zmsub_Cmp1")
+subject.send_keys = email_content
+#email_content=driver.find_element_by_class_name("ze_body")
+email_content.send_keys("Hello there")
+#email_content.send_keys("Hi, Hitesh\nThis is Shreya from a social start-up named Lithics.in, we curate and source amazing craftworks from different artisans and social organisations across India.\nAs you see Holi approaches, and we've got a collection curated especially for you.\nyou can check the products here: https://goo.gl/ZGffrF\nFrom natural, non-toxic and 'safe enough to get into your mouth' gulaal, to organic hair and body care products which provide an all-around care to you. The products we sell are made with rare spices and herbs, grown exclusively in some parts of India.\nFrom natural, non-toxic and 'safe enough to get into your mouth' gulaal, to organic hair and body care products which provide an all-around care to you. The products we sell are made with rare spices and herbs, grown exclusively in some parts of India.\n click on this link to see those amazing products - https://goo.gl/ZGffrF \nAnd, a part of our proceeds goes into helping the underprivileged celebrate this festival.\nThis Holi, be a little different :)\nPlease feel free to reach me anytime for queries.\nThanks,\nShreya\nPh - 9910213665")
+
+driver.switch_to_frame('canvas_frame')
+
+sentmail= driver.find_element_by_link_text('Sent Mail')
+sentmail.click()
+
+time.sleep(10)
